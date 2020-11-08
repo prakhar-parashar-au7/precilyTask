@@ -1,15 +1,13 @@
-import react, { useState } from 'react'
+import React, { useState } from 'react'
 import Main from './Main'
-import { Button } from '@material-ui/core';
-import {Link} from 'react-router-dom'
+
 
 function ResizableComponents() {
 
+  // states used in the component
 
-  const [gridAreaVertical, setGridAreaVertical] = useState({ display: "grid", gridGap: "20px", gridTemplateRows: "250px 200px", height: "500px" })
-  const [gridAreaHorizontal, setGridAreaHorizontal] = useState({ display: "grid", gridTemplateColumns: "750px 230px", width: "1000", gridGap: "10px" })
-  const [offsetterX, setOffsetX] = useState(0)
-  const [offsetterY, setOffsetY] = useState(0)
+  const [gridAreaVertical, setGridAreaVertical] = useState({ display: "grid", gridGap: "20px", gridTemplateRows: "320px 130px", height: "500px", marginLeft: "20px" })
+  const [gridAreaHorizontal, setGridAreaHorizontal] = useState({ display: "grid", gridTemplateColumns: "750px 230px", width: "1000", gridGap: "20px" })
   const [change, setChange] = useState(false)
   const [height1div, setHeight1Div] = useState(250)
   const [width1div, setWidth1Div] = useState(750)
@@ -17,33 +15,35 @@ function ResizableComponents() {
   const [height3div, setHeight3Div] = useState(200)
 
 
+  // styles
   let div1Style = {
-    borderLeft : "2px solid black",
-    borderTop : "2px solid black",
     cursor: "auto",
-    margin: "20px",
+    marginTop: "20px",
+    marginBottom: "20px",
     position: "relative",
-    marginLeft: "10px"
+    overflow: "hidden"
+
   }
 
   let div2Style = {
-    
     position: "relative",
+    marginTop: "20px",
+    marginBottom: "20px",
     cursor: "auto",
-
-
-
+    overflow: "hidden"
   }
 
   let div3Style = {
-    
     position: "relative",
     width: "1000px",
-    cursor: "auto"
-
+    cursor: "auto",
+    overflow: "hidden"
   }
 
 
+
+  // functions used to change the size of components within on a side being dragged
+  
 
 
   const dragEnded1 = (e) => {
@@ -69,38 +69,46 @@ function ResizableComponents() {
   }
 
 
-const dragEnded3 = (e) => {
-  const offSetXRelative = width2div-e.nativeEvent.offsetX 
-  setWidth2Div(offSetXRelative)
-  const newGridArea = `${980-offSetXRelative}px ${offSetXRelative}px`
-  setGridAreaHorizontal({ ...gridAreaHorizontal, gridTemplateColumns: newGridArea })
-  setChange(true)
-}
-
-const dragEnded4 = (e) => {
-  console.log(e.nativeEvent.offsetY)
-  const offSetYRelative =   height3div-e.nativeEvent.offsetY
-  setHeight3Div(offSetYRelative)
-  const newGridArea = `${450-offSetYRelative}px ${offSetYRelative}px`
-  setGridAreaVertical({ ...gridAreaVertical, gridTemplateRows: newGridArea })
+  const dragEnded3 = (e) => {
+    const offSetXRelative = width2div - e.nativeEvent.offsetX
+    setWidth2Div(offSetXRelative)
+    const newGridArea = `${980 - offSetXRelative}px ${offSetXRelative}px`
+    setGridAreaHorizontal({ ...gridAreaHorizontal, gridTemplateColumns: newGridArea })
     setChange(true)
-}
+  }
 
+  const dragEnded4 = (e) => {
+    console.log(e.nativeEvent.offsetY)
+    const offSetYRelative = height3div - e.nativeEvent.offsetY
+    setHeight3Div(offSetYRelative)
+    const newGridArea = `${450 - offSetYRelative}px ${offSetYRelative}px`
+    setGridAreaVertical({ ...gridAreaVertical, gridTemplateRows: newGridArea })
+    setChange(true)
+  }
+
+ 
 
 
   return (
     <div style={gridAreaVertical}>
-
 
       <div style={gridAreaHorizontal}>
 
 
 
 
-
-
+        {/* component1 */}
         <div style={div1Style} >
-          
+
+
+          <div style={{ width: "100%", height: "2px", float: "Top", backgroundColor: "black", zIndex: "1", cursor: "n-resize" }} draggable="true" >
+
+          </div>
+
+          <div style={{ height: "100%", width: "2px", float: "left", backgroundColor: "black", zIndex: "1", cursor: "e-resize" }} draggable="true" onDragEnd={dragEnded3}>
+
+          </div>
+
           <div draggable="true" style={{ height: "100%", width: "2px", float: "right", backgroundColor: "black", zIndex: "1", cursor: "e-resize" }} onDragEnd={dragEnded2}>
 
           </div>
@@ -108,29 +116,36 @@ const dragEnded4 = (e) => {
             onDragEnd={dragEnded1}>
 
           </div>
-          <h4>Hi, might not work on safari,  please try on google chrome if it doesn't.</h4>
-          <Link to="/partTwo"><Button color="primary" variant = "contained">Click here for 2nd part</Button></Link>
-         
+          <div style={{ marginLeft: "30px" }}>
+            <Main />
+          </div>
         </div>
 
 
-
+       {/* component2 */}
 
         <div style={div2Style} >
- 
+
           <div style={{ height: "100%", width: "2px", float: "right", backgroundColor: "black", zIndex: "1" }}>
-         
-          </div>
-          <div style={{ width: "100%", height: "2px", position: "absolute", bottom: "0", backgroundColor: "black", zIndex: "1", cursor : "n-resize" }} draggable = "true" onDragEnd = {dragEnded1}>
 
           </div>
-          
+          <div style={{ width: "100%", height: "2px", position: "absolute", bottom: "0", backgroundColor: "black", zIndex: "1", cursor: "n-resize" }} draggable="true" onDragEnd={dragEnded1}>
+
+          </div>
+
           <div style={{ width: "100%", height: "2px", float: "Top", backgroundColor: "black", zIndex: "1" }}>
 
           </div>
-          only inner sides work as of now 
-          <div style={{ height: "100%", width: "2px", float: "left", backgroundColor: "black", zIndex: "1", cursor : "e-resize" }} draggable = "true" onDragEnd = {dragEnded3}>
 
+          <div style={{ height: "100%", width: "2px", float: "left", backgroundColor: "black", zIndex: "1", cursor: "e-resize" }} draggable="true" onDragEnd={dragEnded3}>
+
+          </div>
+          <div style={{ fontSize: "12px" }}>
+            <p>All components can be resized by dragging their sides.</p>
+            <p>Click add new to add new product.</p>
+            <p>Click update to update the current product(demoProduct cannot be updated)</p>
+            <p>Click Api counts to seet times these Apis have been hit </p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTI3Hbb6Ka0jyRrv0iDctoSmArgaw_41ssDA" height="100px" width="100px" alt="" />
           </div>
         </div>
 
@@ -139,21 +154,29 @@ const dragEnded4 = (e) => {
 
 
 
-
+ {/* component3 */}
 
       <div style={div3Style} >
-        <div style={{ height: "100%", width: "2px", float: "right", backgroundColor: "black", zIndex: "1" }}>
+        <div style={{ height: "100%", width: "2px", float: "right", display: "inline", backgroundColor: "black", zIndex: "1" }}>
 
         </div>
-        <div style={{ width: "100%", height: "2px", position: "absolute", bottom: "0", backgroundColor: "black", zIndex: "1" }}>
+
+        <div style={{ width: "100%", height: "2px", position: "absolute", display: "inline", bottom: "0", backgroundColor: "black", zIndex: "1" }}>
 
         </div>
-        <div style={{ width: "100%", height: "2px", float: "Top", backgroundColor: "black", zIndex: "1", cursor : "n-resize" }} draggable = "true" onDragEnd = {dragEnded4}>
+
+        <div style={{ width: "100%", height: "2px", float: "Top", backgroundColor: "black", zIndex: "1", cursor: "n-resize" }} draggable="true" onDragEnd={dragEnded4}>
 
         </div>
-        If something breaks, please consider and refresh the page to try again. 
-        <div style={{ height: "100%", width: "2px", float: "left", backgroundColor: "black", zIndex: "1" }}>
 
+
+        <div style={{ height: "100%", width: "2px", float: "left", display: "inline", backgroundColor: "black", zIndex: "1", marginRight: "10px" }}>
+
+        </div>
+        <div style={{ width: "400px", marginLeft: "50px", display: "inline", position: "relative", }}>
+          <h4>Draggable Components</h4>
+        If something breaks, please consider and refresh the page to try again.
+        If something breaks, please consider and refresh the page to try again.
         </div>
       </div>
 
