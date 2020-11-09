@@ -102,10 +102,10 @@ const Main = () => {
                     labelId="demo-customized-select-label"
                     id="demo-customized-select"
                     onChange={(e) => {
-                        if (e.target.value == "Yes") {
+                        if (e.target.value === "Yes") {
                             setIsAvailable(true)
                         }
-                        if (e.target.value == "No") {
+                        if (e.target.value === "No") {
                             setIsAvailable(false)
                         }
                     }}>
@@ -119,10 +119,10 @@ const Main = () => {
                         id="demo-customized-select"
                         value={(isAvailable) ? "Yes" : "No"}
                         onChange={(e) => {
-                            if (e.target.value == "Yes") {
+                            if (e.target.value === "Yes") {
                                 setIsAvailable(true)
                             }
-                            if (e.target.value == "No") {
+                            if (e.target.value === "No") {
                                 setIsAvailable(false)
                             }
                         }}>

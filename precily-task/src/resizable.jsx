@@ -52,8 +52,8 @@ background: "linear-gradient(to right, #0ED2F7, #B2FEFA)" /* W3C, IE 10+/ Edge, 
     overflow: "hidden",
     boxShadow: "0 0 15px 1px rgba(0, 0, 0, 0.6)",
     background: "-webkit-linear-gradient(to right, #2F80ED, #56CCF2)",  /* Chrome 10-25, Safari 5.1-6 */
-    background: "linear-gradient(to right, #2F80ED, #56CCF2)" /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
-    
+    background: "linear-gradient(to right, #2F80ED, #56CCF2)", /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    fontSize: "15px"
 
   }
 
@@ -204,7 +204,7 @@ background: "linear-gradient(to right, #0ED2F7, #B2FEFA)" /* W3C, IE 10+/ Edge, 
 
           </div>
           <div style={{ fontSize: "12px" }}>
-            <p>All components can be resized by dragging their sides.</p>
+            <p>Please run the backend server first before performing below operations.</p>
             <p>Click add new to add new product.</p>
             <p>Click update to update the current product(demoProduct cannot be updated)</p>
             <p>Click Api counts to see no. of times these APIs have been hit </p>
@@ -238,9 +238,10 @@ background: "linear-gradient(to right, #0ED2F7, #B2FEFA)" /* W3C, IE 10+/ Edge, 
         <div style={{ height: "100%", width: "2px", float: "left", display: "inline", backgroundColor: "black", zIndex: "1", marginRight: "10px" }}>
 
         </div>
-        <div style={{ width: "400px", marginLeft: "50px", display: "inline", position: "relative", }}>
+        <div style={{ width: "400px", marginLeft: "50px", display: "inline", position: "relative", fontSize : '12px'}}>
           <h4>Draggable Components</h4>
-        If something breaks, please consider and refresh the page to try again.
+          <p>All components can be resized by dragging their sides.</p>
+        <p>If something breaks, please consider and refresh the page to try again.</p>
         </div>
       </div>
 
